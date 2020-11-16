@@ -2,7 +2,7 @@
 # Name: install_ts3-server.sh
 # Version: 1.3
 # Created On: 3/5/2015
-# Updated On: 11/07/2020
+# Updated On: 11/16/2020
 # Created By: rcguy
 #Updated By: Joshua24h
 # Description: Automagically installs the Linux TeamSpeak 3 Server
@@ -11,8 +11,9 @@
 # ==> VARIABLES <==
 # user to run the ts3server and where to install it
 TS3_USER="teamspeak3"
-TS3_DIR="/opt/ts3server"
-TS3_VER="3.12.1"
+TS3_USER_HOME="/home/$TS3_USER"
+TS3_DIR="$TS3_USER_HOME/ts3server"
+TS3_VER="3.13.1"
 
 # ==> MAIN PROGRAM <==
 set -e # exit with a non-zero status when there is an uncaught error
@@ -23,7 +24,7 @@ if  [ "$EUID" -ne 0 ]; then
   exit 1
 fi
 
-# official download urls - updated on: 11/17/2019
+# official download urls - updated on: 11/07/2020
 X86="https://files.teamspeak-services.com/releases/server/$TS3_VER/teamspeak3-server_linux_x86-$TS3_VER.tar.bz2"
 X64="https://files.teamspeak-services.com/releases/server/$TS3_VER/teamspeak3-server_linux_amd64-$TS3_VER.tar.bz2"
 
@@ -48,7 +49,7 @@ rm -rf teamspeak3-server_linux*.tar.bz2 teamspeak3-server_linux*/
 }
 
 # add the user to run ts3server
-if adduser --system --group --disabled-login --disabled-password --no-create-home "$TS3_USER" >/dev/null 2>&1; then
+if adduser --system --group --disabled-login --disabled-password "$TS3_USER" >/dev/null 2>&1; then
   echo -e "\nAdded new user: '$TS3_USER'"
 else
   echo -e "\n ERROR!!! Failed to add new user: '$TS3_USER'\n"
@@ -99,7 +100,7 @@ voice_ip=0.0.0.0
 query_ip=0.0.0.0
 
 # The Filetransfer IP that your Instance is listing on. [TCP] (Default: 0.0.0.0)
-filetransfer_ip=
+filetransfer_ip=0.0.0.0
 
 # The Voice Port that your default Virtual Server is listing on. [UDP] (Default: 9987)
 default_voice_port=9987
