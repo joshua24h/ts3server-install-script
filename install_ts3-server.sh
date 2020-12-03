@@ -78,7 +78,7 @@ WorkingDirectory= $TS3_DIR
 User=$TS3_USER
 Group=$TS3_USER
 Type=forking
-ExecStart= $TS3_DIR/ts3server_startscript.sh start inifile= $TS3_DIR/ts3server.ini
+ExecStart= $TS3_DIR/ts3server_startscript.sh start inifile=ts3server.ini
 ExecStop= $TS3_DIR/ts3server_startscript.sh stop
 ExecReload= $TS3_DIR/ts3server_startscript.sh reload
 PIDFile= $TS3_DIR/ts3server.pid
