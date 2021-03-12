@@ -115,7 +115,7 @@ filetransfer_port=30033
 logappend=1
 EOF
 chown "$TS3_USER":"$TS3_USER" "$TS3_DIR"/ts3server.ini
-
+chmod "$TS3_USER""TS3_DIR" 777
 # start the ts3server to generate the ServerAdmin Privilege Key
 echo "Starting the TeamSpeak 3 server"
 systemctl --quiet enable ts3server.service
